@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Menu | Mrtechnician Digital</title>
+    <title>Premium Smart Menu | Mrtechnician</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap');
 
@@ -18,58 +18,61 @@
             color: white;
             font-family: 'Poppins', sans-serif;
             margin: 0;
-            padding-bottom: 100px;
+            padding-bottom: 50px;
         }
 
         header {
             text-align: center;
-            padding: 50px 20px;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800');
+            padding: 80px 20px;
+            background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), 
+                        url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200');
             background-size: cover;
             background-position: center;
         }
 
         h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin: 0;
             color: var(--accent);
         }
 
-        /* Category Filter */
+        /* Category Filter Bar */
         .filter-nav {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            padding: 20px;
+            gap: 10px;
+            padding: 20px 10px;
             position: sticky;
             top: 0;
             background: var(--bg);
             z-index: 100;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            overflow-x: auto;
+            white-space: nowrap;
         }
 
         .filter-btn {
             background: var(--card-bg);
-            border: 1px solid var(--accent);
+            border: 1px solid rgba(255,255,255,0.1);
             color: white;
-            padding: 8px 20px;
+            padding: 10px 20px;
             border-radius: 50px;
             cursor: pointer;
             transition: 0.3s;
-            font-weight: 600;
+            font-size: 0.9rem;
         }
 
-        .filter-btn.active, .filter-btn:hover {
+        .filter-btn.active {
             background: var(--accent);
-            color: #000;
+            color: black;
+            font-weight: 600;
         }
 
         /* Menu Grid */
         .menu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
             padding: 20px;
             max-width: 1200px;
             margin: 0 auto;
@@ -77,38 +80,29 @@
 
         .item-card {
             background: var(--card-bg);
-            border-radius: 20px;
+            border-radius: 25px;
             overflow: hidden;
-            transition: 0.3s;
             border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s;
         }
 
         .item-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             border-color: var(--accent);
         }
 
         .item-img {
             width: 100%;
-            height: 200px;
+            height: 180px;
             object-fit: cover;
         }
 
-        .item-info {
-            padding: 20px;
-        }
-
-        .item-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .price {
+        .item-info { padding: 20px; }
+        
+        .price-tag {
             color: var(--accent);
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
 
         .order-btn {
@@ -122,97 +116,143 @@
             border-radius: 12px;
             margin-top: 15px;
             font-weight: 600;
-            transition: 0.3s;
         }
 
-        .order-btn:hover {
-            background: #128c7e;
-        }
-
-        /* Hide items not filtered */
         .hidden { display: none; }
 
-        .branding {
-            text-align: center;
-            padding: 40px;
-            opacity: 0.5;
-            font-size: 0.8rem;
+        .category-title {
+            width: 100%;
+            padding-left: 20px;
+            color: var(--accent);
+            text-transform: uppercase;
             letter-spacing: 2px;
+            font-size: 1.5rem;
+            margin-top: 40px;
         }
+
+        .branding { text-align: center; margin-top: 50px; color: #64748b; font-size: 0.7rem; letter-spacing: 3px; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>The Royal Cafe</h1>
-    <p>Experience Digital Dining</p>
+    <h1>The Mrtechnician Cafe</h1>
+    <p>Premium Digital Menu</p>
 </header>
 
 <div class="filter-nav">
-    <button class="filter-btn active" onclick="filterItems('all')">All</button>
+    <button class="filter-btn active" onclick="filterItems('all')">View All</button>
     <button class="filter-btn" onclick="filterItems('veg')">Veg</button>
-    <button class="filter-btn" onclick="filterItems('non-veg')">Non-Veg</button>
-    <button class="filter-btn" onclick="filterItems('drinks')">Drinks</button>
+    <button class="filter-btn" onclick="filterItems('nonveg')">Non-Veg</button>
+    <button class="filter-btn" onclick="filterItems('coffee')">Coffee</button>
+    <button class="filter-btn" onclick="filterItems('drinks')">Cold Drinks</button>
 </div>
 
 <div class="menu-grid">
-    <div class="item-card veg">
-        <img src="5351.jpg" class="item-img" alt="Salad">
+    
+    <div class="item-card coffee">
+        <img src="https://images.unsplash.com/photo-1541167760496-162955ed8a9f?w=400" class="item-img" alt="Latte">
         <div class="item-info">
-            <div class="item-top">
-                <h3>Fresh Greek Salad</h3>
-                <span class="price">Rs. 450</span>
-            </div>
-            <p>Organic greens, feta cheese, and olives.</p>
-            <a href="https://wa.me/97798XXXXXXXX?text=I'd%20like%20to%20order%20the%20Greek%20Salad" class="order-btn">Order via WhatsApp</a>
+            <span class="price-tag">Rs. 250</span>
+            <h3>Caramel Macchiato</h3>
+            <p>Freshly steamed milk with vanilla-flavored syrup.</p>
+            <a href="https://wa.me/9779804650880?text=Order:%20Caramel%20Macchiato" class="order-btn">Order Now</a>
         </div>
     </div>
 
-    <div class="item-card non-veg">
-        <img src="yummy-smile-vector-cartoon-line-emoticon-lick-mouth-lips-with-tongue-delicious-tasty-eating.jpg" class="item-img" alt="Pizza">
+    <div class="item-card coffee">
+        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400" class="item-img" alt="Cappuccino">
         <div class="item-info">
-            <div class="item-top">
-                <h3>Chicken Pizza</h3>
-                <span class="price">Rs. 850</span>
-            </div>
-            <p>Smoked chicken with extra mozzarella cheese.</p>
-            <a href="https://wa.me/97798XXXXXXXX?text=I'd%20like%20to%20order%20the%20Chicken%20Pizza" class="order-btn">Order via WhatsApp</a>
+            <span class="price-tag">Rs. 190</span>
+            <h3>Classic Cappuccino</h3>
+            <p>Rich espresso under a thick layer of foam.</p>
+            <a href="https://wa.me/9779804650880?text=Order:%20Cappuccino" class="order-btn">Order Now</a>
         </div>
     </div>
 
     <div class="item-card drinks">
-        <img src="https://images.unsplash.com/photo-1544145945-f904253d0c7b?w=400" class="item-img" alt="Coffee">
+        <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=400" class="item-img" alt="Juice">
         <div class="item-info">
-            <div class="item-top">
-                <h3>Iced Americano</h3>
-                <span class="price">Rs. 220</span>
-            </div>
-            <p>Signature dark roast over ice.</p>
-            <a href="https://wa.me/97798XXXXXXXX?text=I'd%20like%20to%20order%20the%20Iced%20Americano" class="order-btn">Order via WhatsApp</a>
+            <span class="price-tag">Rs. 320</span>
+            <h3>Tropical Mocktail</h3>
+            <p>A refreshing blend of mango, pineapple, and soda.</p>
+            <a href="https://wa.me/9779804650880?text=Order:%20Tropical%20Mocktail" class="order-btn">Order Now</a>
         </div>
     </div>
+
+    <div class="item-card drinks">
+        <img src="https://images.unsplash.com/photo-1622483767028-3f66f34a50f4?w=400" class="item-img" alt="Coke">
+        <div class="item-info">
+            <span class="price-tag">Rs. 120</span>
+            <h3>Chilled Soft Drinks</h3>
+            <p>Choice of Coke, Fanta, or Sprite (500ml).</p>
+            <a href="https://wa.me/9779804650880?text=Order:%20Soft%20Drink" class="order-btn">Order Now</a>
+        </div>
+    </div>
+
+    <div class="item-card veg">
+        <img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400" class="item-img" alt="Paneer">
+        <div class="item-info">
+            <span class="price-tag">Rs. 450</span>
+            <h3>Paneer Chilli</h3>
+            <p>Spicy fried paneer with bell peppers and onions.</p>
+            <a href="https://wa.me/9779804650880?text=Order:%20Paneer%20Chilli" class="order-btn">Order Now</a>
+        </div>
+    </div>
+
+    <div class="item-card veg">
+        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400" class="item-img" alt="Salad">
+        <div class="item-info">
+            <span class="price-tag">Rs. 350</span>
+            <h3>Garden Fresh Salad</h3>
+            <p>Mixed seasonal vegetables with lime dressing.</p>
+            <a href="https://wa.me/9779804650880?text=Order:%20Garden%20Salad" class="order-btn">Order Now</a>
+        </div>
+    </div>
+
+    <div class="item-card nonveg">
+        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400" class="item-img" alt="Chicken Pizza">
+        <div class="item-info">
+            <span class="price-tag">Rs. 890</span>
+            <h3>Chicken BBQ Pizza</h3>
+            <p>Smoked chicken with mozzarella and BBQ sauce.</p>
+            <a href="https://wa.me/9779804650880?text=Order:%20BBQ%20Pizza" class="order-btn">Order Now</a>
+        </div>
+    </div>
+
+    <div class="item-card nonveg">
+        <img src="https://images.unsplash.com/photo-1606787366850-de6330128bfc?w=400" class="item-img" alt="Burger">
+        <div class="item-info">
+            <span class="price-tag">Rs. 550</span>
+            <h3>Double Patty Burger</h3>
+            <p>Juicy buffalo meat with melted cheese and fries.</p>
+            <a href="https://wa.me/YOUR_NUMBER?text=Order:%20Burger" class="order-btn">Order Now</a>
+        </div>
+    </div>
+
 </div>
 
-<div class="branding">SMART MENU BY MRTECHNICIAN</div>
+<div class="branding">DEVELOPED BY MRTECHNICIAN DIGITAL STUDIO</div>
 
 <script>
     function filterItems(category) {
-        // Update Buttons
-        const btns = document.querySelectorAll('.filter-btn');
-        btns.forEach(btn => btn.classList.remove('active'));
-        event.target.classList.add('active');
+        // Toggle Active Button
+        const buttons = document.querySelectorAll('.filter-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        event.currentTarget.classList.add('active');
 
-        // Filter Content
-        const items = document.querySelectorAll('.item-card');
-        items.forEach(item => {
+        // Filter Grid
+        const cards = document.querySelectorAll('.item-card');
+        cards.forEach(card => {
             if (category === 'all') {
-                item.classList.remove('hidden');
+                card.classList.remove('hidden');
             } else {
-                item.classList.contains(category) ? item.classList.remove('hidden') : item.classList.add('hidden');
+                card.classList.contains(category) ? card.classList.remove('hidden') : card.classList.add('hidden');
             }
         });
     }
 </script>
 
 </body>
-</html>
+    </html>
+    
